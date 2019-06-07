@@ -1,11 +1,9 @@
 cmake_minimum_required(VERSION 3.13)
 project(Labo4)
 
-
-
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Labo4 main.cpp Customer.cpp Customer.h Movie.cpp Movie.h Rental.h)
+add_executable(Labo4 main.cpp Customer.cpp Customer.h Movie.cpp Movie.h Rental.h )
 
 
 include(DownloadProject.cmake)
@@ -32,5 +30,6 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 # Trivial example using gtest and gmock
-target_link_libraries(Labo4 gtest gmock_main)
-add_test(NAME example_test COMMAND example)
+add_executable(Labo4_test Customer.cpp Customer.h Movie.cpp Movie.h Rental.h CustomerTest.cpp)
+
+target_link_libraries(Labo4_test gtest gmock_main)
