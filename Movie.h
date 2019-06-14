@@ -13,7 +13,7 @@ public:
     virtual int getRenterBonus() const;
 
 protected:
-    Movie( const std::string& title, double basePrice,int nbDayBasePrice, double additionnalPrice);
+    Movie( const std::string& title, double basePrice,int nbDayBasePrice, double additionnalPrice, int rentalPoint);
 
 
 
@@ -23,12 +23,13 @@ private:
     const double basePrice;
     const int nbDayBasePrice;
     const double additionnalPrice;
+    const int rentalPoint;
 };
 
 
 inline Movie::
 Movie( const std::string& title )
-        : Movie(title,2,2,1.5)
+        : Movie(title,2,2,1.5,0)
 {
 
 }
@@ -49,8 +50,6 @@ class NewReleaseMovie : public Movie{
 
 public:
     NewReleaseMovie(const std::string &title);
-
-    virtual int getRenterBonus() const;
 };
 
 

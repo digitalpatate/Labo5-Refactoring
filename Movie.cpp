@@ -9,20 +9,14 @@ double Movie::getPrice(int nbDayRented) const{
 }
 
 int Movie::getRenterBonus() const {
-    return 0;
+    return rentalPoint;
 }
 
-Movie::Movie(const std::string &title, double basePrice, int nbDayBasePrice, double additionnalPrice)
-: _title(title), basePrice(basePrice),nbDayBasePrice(nbDayBasePrice),additionnalPrice(additionnalPrice){
+Movie::Movie(const std::string &title, double basePrice, int nbDayBasePrice, double additionnalPrice, int rentalPoint)
+: _title(title), basePrice(basePrice),nbDayBasePrice(nbDayBasePrice),additionnalPrice(additionnalPrice),rentalPoint(rentalPoint){
 
 }
 
-ChildrenMovie::ChildrenMovie(const std::string &title) : Movie(title,1.5,3,1.5) {}
+ChildrenMovie::ChildrenMovie(const std::string &title) : Movie(title,1.5,3,1.5,0) {}
 
-NewReleaseMovie::NewReleaseMovie(const std::string &title) : Movie(title,3,1,3) {}
-
-
-int NewReleaseMovie::getRenterBonus() const {
-    return 1;
-}
-
+NewReleaseMovie::NewReleaseMovie(const std::string &title) : Movie(title,3,1,3,1) {}
