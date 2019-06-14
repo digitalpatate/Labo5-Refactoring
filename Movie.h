@@ -6,23 +6,20 @@
 class Movie {
 public:
 
-    Movie( const std::string& title );
+    explicit Movie( const std::string& title );
 
     std::string getTitle() const;
     double getPrice(int nbDayRented) const ;
     virtual int getRenterBonus() const;
 
 protected:
-    Movie( const std::string& title, double basePrice,int nbDayBasePrice, double additionnalPrice, int rentalPoint);
-
-
+    Movie( const std::string& title, double basePrice,int nbDayBasePrice, double additionalPrice, int rentalPoint);
 
 private:
     std::string _title;
-
     const double basePrice;
     const int nbDayBasePrice;
-    const double additionnalPrice;
+    const double additionalPrice;
     const int rentalPoint;
 };
 
@@ -38,18 +35,13 @@ inline std::string Movie::
 getTitle() const { return _title; }
 
 class ChildrenMovie : public Movie{
-
 public:
-    ChildrenMovie(const std::string &title);
-
-
-
+    explicit ChildrenMovie(const std::string &title);
 };
 
 class NewReleaseMovie : public Movie{
-
 public:
-    NewReleaseMovie(const std::string &title);
+    explicit NewReleaseMovie(const std::string &title);
 };
 
 

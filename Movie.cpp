@@ -3,7 +3,7 @@
 double Movie::getPrice(int nbDayRented) const{
     double price = basePrice;
     if ( nbDayRented > nbDayBasePrice )
-        price += ( nbDayRented - nbDayBasePrice ) * additionnalPrice ;
+        price += ( nbDayRented - nbDayBasePrice ) * additionalPrice ;
 
     return price;
 }
@@ -12,8 +12,8 @@ int Movie::getRenterBonus() const {
     return rentalPoint;
 }
 
-Movie::Movie(const std::string &title, double basePrice, int nbDayBasePrice, double additionnalPrice, int rentalPoint)
-: _title(title), basePrice(basePrice),nbDayBasePrice(nbDayBasePrice),additionnalPrice(additionnalPrice),rentalPoint(rentalPoint){
+Movie::Movie(const std::string &title, double basePrice, int nbDayBasePrice, double additionalPrice, int rentalPoint)
+: _title(title), basePrice(basePrice),nbDayBasePrice(nbDayBasePrice),additionalPrice(additionalPrice),rentalPoint(rentalPoint){
 
 }
 
