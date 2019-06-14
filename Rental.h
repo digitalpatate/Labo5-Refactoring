@@ -1,6 +1,8 @@
 // Rental.h
 #ifndef RENTAL_H
 #define RENTAL_H
+
+#include <sstream>
 #include "Movie.h"
 
 class Rental {
@@ -12,6 +14,8 @@ public:
 
     double getPrice() const ;
 
+
+    std::string statement()const;
 
 private:
     Movie _movie;
@@ -28,5 +32,11 @@ getDaysRented() const { return _daysRented; }
 
 inline const Movie& Rental::
 getMovie() const { return _movie; }
+
+inline std::string Rental::statement() const{
+    std::ostringstream stream;
+    stream << "\t" << getMovie().getTitle() <<"\t" << getPrice() <<"\n";
+    return stream.str();
+}
 
 #endif // RENTAL_H

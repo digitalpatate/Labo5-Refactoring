@@ -30,8 +30,7 @@ string Customer::statement()
         }
 
         // show figures for this rental
-        result << "\t" << each.getMovie().getTitle() << "\t"
-               << thisAmount << "\n";
+        result << each.statement();
         totalAmount += thisAmount;
     }
     // add footer lines
