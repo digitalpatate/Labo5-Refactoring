@@ -16,6 +16,7 @@ public:
 
 
     std::string statement()const;
+    int getRenterPoint() const;
 
 private:
     Movie _movie;
@@ -37,6 +38,10 @@ inline std::string Rental::statement() const{
     std::ostringstream stream;
     stream << "\t" << getMovie().getTitle() <<"\t" << getPrice() <<"\n";
     return stream.str();
+}
+
+inline int Rental::getRenterPoint() const {
+    return 1 + ( getDaysRented() > 1 ? getMovie().getRenterBonus() : 0) ;
 }
 
 #endif // RENTAL_H
