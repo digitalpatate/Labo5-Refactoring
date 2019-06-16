@@ -19,7 +19,7 @@ public:
     int getRenterPoint() const;
 
 private:
-    Movie _movie;
+    const Movie& _movie;
     int _daysRented;
 };
 
