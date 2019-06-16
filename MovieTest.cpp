@@ -11,34 +11,22 @@
 #include "Movie.h"
 #include "Rental.h"
 
-TEST(RegularMovieTest, checkPrice) {
+TEST(RegularMovieTest, checkRenterPoint) {
     Movie movie("Jack's potatoes");
 
-    ASSERT_EQ(movie.getPrice(1),2 );
-    ASSERT_EQ(movie.getPrice(2),2 );
-    ASSERT_EQ(movie.getPrice(3),3.5 );
-    ASSERT_EQ(movie.getPrice(4),5 );
+    ASSERT_EQ(movie.getRenterBonus(), 0);
 }
 
-TEST(ChildrenMovieTest, checkPrice) {
+TEST(ChildrenMovieTest, checkRenterPoint) {
     ChildrenMovie movie("Jack's potatoes");
 
-    ASSERT_EQ(movie.getPrice(1),1.5 );
-    ASSERT_EQ(movie.getPrice(2),1.5 );
-    ASSERT_EQ(movie.getPrice(3),1.5 );
-    ASSERT_EQ(movie.getPrice(4),3 );
+    ASSERT_EQ(movie.getRenterBonus(), 0);
 }
 
-TEST(NewReleaseMovie, checkPrice) {
+TEST(NewReleaseMovie, checkRenterPoint) {
     NewReleaseMovie movie("Jack's potatoes");
 
-    ASSERT_EQ(movie.getPrice(1),3 );
-    ASSERT_EQ(movie.getPrice(2),6 );
-    ASSERT_EQ(movie.getPrice(3),9 );
-    ASSERT_EQ(movie.getPrice(4),12);
+    ASSERT_EQ(movie.getRenterBonus(), 1);
 }
-
-
-
 
 #endif //LABO4_CUSTOMERTEST_CPP
