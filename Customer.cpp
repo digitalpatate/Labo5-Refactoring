@@ -15,10 +15,10 @@ string Customer::statement()
     ostringstream result;
     result << "Rental Record for " << getName() << "\n";
 
-    for(const Rental& rental : _rentals){
-        frequentRenterPoints += rental.getRenterPoint();
-        result << rental.statement();
-        totalAmount += rental.getPrice();
+    for(const Rental* rental : _rentals){
+        frequentRenterPoints += rental->getRenterPoint();
+        result << rental->statement();
+        totalAmount += rental->getPrice();
     }
     // add footer lines
     result << "Amount owed is " << totalAmount << "\n"

@@ -10,12 +10,14 @@ public:
     Rental(const Movie& movie, int daysRented);
     
     int getDaysRented() const;
+    
     const Movie& getMovie() const;
     
-    double getPrice() const ;
+    virtual double getPrice() const;
     
-    std::string statement()const;
-    int getRenterPoint() const;
+    virtual std::string statement()const;
+    
+    virtual int getRenterPoint() const;
     
 private:
     const Movie& _movie;

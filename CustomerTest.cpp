@@ -11,12 +11,29 @@
 #include "Movie.h"
 #include "Rental.h"
 
-TEST(CustomerTest, simple) {
-    Customer customer("Homer Simpson");
-    customer.addRental( Rental( Movie("300"), 1));
+using ::testing::Return;
 
+class RentalMock : public Rental {
+public:
+
+    RentalMock(const Movie& m, int n) : Rental(m, n) {}
+    MOCK_CONST_METHOD0(statement, std::string());
+    MOCK_CONST_METHOD0(getPrice, double());
+    MOCK_CONST_METHOD0(getRenterPoint, int());
+};
+
+TEST(CustomerTest, checkStatement) {
+    
+    Customer customer("Jack");
+    RentalMock rental(Movie("Movie"), 1);
+    customer.addRental(&rental);
+
+    EXPECT_CALL(rental, statement()).WillRepeatedly(Return("Rental\n"));
+    EXPECT_CALL(rental, getPrice()).WillRepeatedly(Return(10.0));
+    EXPECT_CALL(rental, getRenterPoint()).WillRepeatedly(Return(5));
+    
     ASSERT_EQ(customer.statement(),
-            "Rental Record for Homer Simpson\n\t300\t2\nAmount owed is 2\nYou earned 1 frequent renter points"
+            "Rental Record for Jack\nRental\nAmount owed is 10\nYou earned 5 frequent renter points"
     );
 }
 
