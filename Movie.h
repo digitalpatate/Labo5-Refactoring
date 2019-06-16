@@ -3,33 +3,37 @@
 #define MOVIE_H
 #include <string>
 
+#include "PriceState.h"
+
+
+
 class Movie {
 public:
+    
+    static const RegularPriceState REGULAR_PRICE;
+    static const ChildrenPriceState CHILDREN_PRICE;
+    static const NewReleasePriceState NEW_RELEASE_PRICE;
 
-    explicit Movie( const std::string& title );
+    explicit Movie(const std::string& title);
 
     std::string getTitle() const;
     double getPrice(int nbDayRented) const ;
     virtual int getRenterBonus() const;
-
+    void setPriceState(const PriceState *priceState);
+    
 protected:
-    Movie( const std::string& title, double basePrice,int nbDayBasePrice, double additionalPrice, int rentalPoint);
+    Movie( const std::string& title, const PriceState *priceState, int rentalPoint);
 
 private:
     std::string _title;
-    const double basePrice;
-    const int nbDayBasePrice;
-    const double additionalPrice;
-    const int rentalPoint;
+    const PriceState *priceState;
+    int rentalPoint;
 };
 
 
 inline Movie::
-Movie( const std::string& title )
-        : Movie(title,2,2,1.5,0)
-{
-
-}
+Movie(const std::string& title)
+: Movie(title, &REGULAR_PRICE, 0) {}
 
 inline std::string Movie::
 getTitle() const { return _title; }

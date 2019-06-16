@@ -1,22 +1,24 @@
 #include "Movie.h"
 
-double Movie::getPrice(int nbDayRented) const{
-    double price = basePrice;
-    if ( nbDayRented > nbDayBasePrice )
-        price += ( nbDayRented - nbDayBasePrice ) * additionalPrice ;
+const RegularPriceState Movie::REGULAR_PRICE;
+const ChildrenPriceState Movie::CHILDREN_PRICE;
+const NewReleasePriceState Movie::NEW_RELEASE_PRICE;
 
-    return price;
+double Movie::getPrice(int nbDayRented) const{
+    return priceState->calculatePrice(nbDayRented);
 }
 
 int Movie::getRenterBonus() const {
     return rentalPoint;
 }
 
-Movie::Movie(const std::string &title, double basePrice, int nbDayBasePrice, double additionalPrice, int rentalPoint)
-: _title(title), basePrice(basePrice),nbDayBasePrice(nbDayBasePrice),additionalPrice(additionalPrice),rentalPoint(rentalPoint){
-
+void Movie::setPriceState(const PriceState *priceState) {
+    this->priceState = priceState;
 }
 
-ChildrenMovie::ChildrenMovie(const std::string &title) : Movie(title,1.5,3,1.5,0) {}
+Movie::Movie(const std::string& title, const PriceState *priceState, int rentalPoint)
+: _title(title), priceState(priceState),rentalPoint(rentalPoint) {}
 
-NewReleaseMovie::NewReleaseMovie(const std::string &title) : Movie(title,3,1,3,1) {}
+ChildrenMovie::ChildrenMovie(const std::string &title) : Movie(title, &CHILDREN_PRICE, 0) {}
+
+NewReleaseMovie::NewReleaseMovie(const std::string &title) : Movie(title, &NEW_RELEASE_PRICE, 1) {}
