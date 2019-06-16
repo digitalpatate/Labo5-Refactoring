@@ -37,3 +37,21 @@ TEST(NewReleasePriceTest, checkPrice) {
     ASSERT_EQ(priceState.calculatePrice(3),9 );
     ASSERT_EQ(priceState.calculatePrice(4),12);
 }
+
+TEST(RegularMovieTest, checkRenterPoint) {
+    RegularPriceState priceState;
+    
+    ASSERT_EQ(priceState.renterPoint(), 0);
+}
+
+TEST(ChildrenMovieTest, checkRenterPoint) {
+    ChildrenPriceState priceState;
+    
+    ASSERT_EQ(priceState.renterPoint(), 0);
+}
+
+TEST(NewReleaseMovie, checkRenterPoint) {
+    NewReleasePriceState priceState;
+    
+    ASSERT_EQ(priceState.renterPoint(), 1);
+}
