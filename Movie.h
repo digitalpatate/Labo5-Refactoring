@@ -5,8 +5,6 @@
 
 #include "PriceState.h"
 
-
-
 class Movie {
 public:
     
@@ -16,10 +14,10 @@ public:
 
     explicit Movie(const std::string& title);
 
-    std::string getTitle() const;
-    double getPrice(int nbDayRented) const ;
+    virtual std::string getTitle() const;
+    virtual double getPrice(int nbDayRented) const;
     virtual int getRenterBonus() const;
-    void setPriceState(const PriceState *priceState);
+    virtual void setPriceState(const PriceState *priceState);
     
 protected:
     Movie( const std::string& title, const PriceState *priceState);
@@ -28,7 +26,6 @@ private:
     std::string _title;
     const PriceState *priceState;
 };
-
 
 inline Movie::
 Movie(const std::string& title)
