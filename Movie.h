@@ -22,18 +22,17 @@ public:
     void setPriceState(const PriceState *priceState);
     
 protected:
-    Movie( const std::string& title, const PriceState *priceState, int rentalPoint);
+    Movie( const std::string& title, const PriceState *priceState);
 
 private:
     std::string _title;
     const PriceState *priceState;
-    int rentalPoint;
 };
 
 
 inline Movie::
 Movie(const std::string& title)
-: Movie(title, &REGULAR_PRICE, 0) {}
+: Movie(title, &REGULAR_PRICE) {}
 
 inline std::string Movie::
 getTitle() const { return _title; }

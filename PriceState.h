@@ -10,17 +10,17 @@
 
 class PriceState {
     
-protected:
-    
     const double BASE_PRICE;
     const int NB_DAY_BASE_PRICE;
     const double ADDITIONAL_PRICE;
+    const int RENTER_POINT;
     
 public:
     
-    PriceState(double basePrice, int nbDayBasePrice, double additionalPrice);
+    PriceState(double basePrice, int nbDayBasePrice, double additionalPrice, int renterPoint);
     
     double calculatePrice(int nbDayRented) const;
+    int renterPoint() const;
 };
 
 class RegularPriceState : public PriceState {

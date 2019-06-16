@@ -7,8 +7,8 @@
 
 #include "PriceState.h"
 
-PriceState::PriceState(double basePrice, int nbDayBasePrice, double additionalPrice)
-: BASE_PRICE(basePrice), NB_DAY_BASE_PRICE(nbDayBasePrice), ADDITIONAL_PRICE(additionalPrice) {}
+PriceState::PriceState(double basePrice, int nbDayBasePrice, double additionalPrice, int renterPoint)
+: BASE_PRICE(basePrice), NB_DAY_BASE_PRICE(nbDayBasePrice), ADDITIONAL_PRICE(additionalPrice), RENTER_POINT(renterPoint) {}
 
 double PriceState::calculatePrice(int nbDayRented) const {
     double price = BASE_PRICE;
@@ -18,11 +18,15 @@ double PriceState::calculatePrice(int nbDayRented) const {
     return price;
 }
 
+int PriceState::renterPoint() const {
+    return RENTER_POINT;
+}
+
 RegularPriceState::RegularPriceState()
-: PriceState(2, 2, 1.5) {}
+: PriceState(2, 2, 1.5, 0) {}
 
 ChildrenPriceState::ChildrenPriceState()
-: PriceState(1.5, 3, 1.5) {}
+: PriceState(1.5, 3, 1.5, 0) {}
 
 NewReleasePriceState::NewReleasePriceState()
-: PriceState(3, 1, 3) {}
+: PriceState(3, 1, 3, 1) {}
